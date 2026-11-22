@@ -166,10 +166,23 @@
         <iframe src="audio/911.mp3" allow="autoplay" style="display:none" id="iframeAudio">
         </iframe>  -->
         
-        <audio id="bgmMusic" preload="auto" autoplay loop>
-            <source src="911.mp3" type="audio/mpeg">
-            Trình duyệt không hỗ trợ phát nhạc.
-        </audio>
+        <audio id="bgmMusic" preload="auto" loop>
+    <source src="./911.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const music = document.getElementById("bgmMusic");
+
+        // Thử autoplay
+        music.play().catch(() => {
+            // Nếu bị Chrome chặn, click vào trang để phát nhạc
+            document.addEventListener("click", function playMusic() {
+                music.play();
+            }, { once: true });
+        });
+    });
+</script>
 
         <script src="public/js/anijs-min.js"></script>
         <script src="public/js/anijs-helper-scrollreveal-min.js"></script>
